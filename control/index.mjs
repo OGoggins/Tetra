@@ -1,11 +1,22 @@
 'use strict';
 
-import { resizeCanvas } from './canvas.mjs';
+import { resizeCanvas, drawGrid } from './canvas.mjs';
 
 function init() {
   registerSW();
   resizeCanvas();
+  prepareEventListeners();
+  const canvas = document.querySelector('#gameScreen');
+  const c = canvas.getContext('2d');
+  c.clearRect(0, 0, canvas.width, canvas.height);
+
   main();
+}
+
+function prepareEventListeners() {
+  window.addEventListener('resize', resizeCanvas);
+
+  // KB Listeners Here
 }
 
 async function registerSW() {
@@ -21,9 +32,9 @@ async function registerSW() {
 }
 
 function main() {
-
+  window.requestAnimationFrame(main);
+  drawGrid(grid);
 }
 
-
-window.addEventListener('resize', resizeCanvas);
+const grid = [];
 window.addEventListener('load', init);
