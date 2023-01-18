@@ -1,4 +1,22 @@
 {
+  "name": "tetra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OGoggins/Tetra.git"
+  },
+  "author": "up2069570, up2058177",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OGoggins/Tetra/issues"
+  },
+  "homepage": "https://github.com/OGoggins/Tetra#readme",
   "devDependencies": {
     "eslint": "^8.32.0",
     "eslint-config-portsoc": "^1.0.1"
