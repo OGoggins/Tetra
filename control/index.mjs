@@ -1,16 +1,16 @@
 'use strict';
 
-import { dinamic } from "./canvas.mjs";
+import { resizeCanvas } from './canvas.mjs';
 
 function init() {
-    main();
+  resizeCanvas();
+  main();
 }
 
 function main() {
-    dinamic();
+
 }
 
 
-window.addEventListener("resize", dinamic);
+window.addEventListener('resize', resizeCanvas);
 window.addEventListener('load', init);
-

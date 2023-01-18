@@ -1,10 +1,8 @@
+export function resizeCanvas() {
+  const newHeight = window.innerHeight;
+  const newWidth = document.body.clientWidth;
+  const canvas = document.querySelector('#gameScreen');
 
-
-export function dinamic() {
-    const clientHight = document.body.clientHeight;
-    const clientWidth = document.body.clientWidth;
-    const canvas = document.querySelector('#gameScreen');
-    
-    canvas.hight = clientHight;
-    canvas.width = clientWidth / 1.02;
+  canvas.height = newHeight / 1.05;
+  canvas.width = newWidth / 1.02;
 }
