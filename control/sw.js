@@ -4,14 +4,14 @@ async function prepareCache() {
 }
 
 const RESOURCES = [
-  '/',
-  '/index.html',
-  '/sw.js',
-  '/index.mjs',
-  '/canvas.mjs',
-  '/index.css',
+  './',
+  './index.html',
+  './sw.js',
+  './index.mjs',
+  './canvas.mjs',
+  './index.css',
   '../assets/icon.png',
-  '/manifest.json',
+  './manifest.json',
 ];
 
 const CACHE = 'tetra';
