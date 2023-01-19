@@ -33,8 +33,8 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
-  drawGrid(grid);
+  drawGrid();
 }
 
-const grid = [];
+
 window.addEventListener('load', init);
