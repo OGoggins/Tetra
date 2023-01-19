@@ -1,23 +1,20 @@
-export function resizeCanvas() {
-  const newHeight = window.innerHeight;
-  const newWidth = document.body.clientWidth;
-  const canvas = document.querySelector('#gameScreen');
+import { rAF } from './game_functions.mjs';
 
-  canvas.height = newHeight / 1.05;
-  canvas.width = newWidth / 1.02;
-}
+export const canvas = document.querySelector('#gameScreen');
+export const context = canvas.getContext('2d');
+const grid = [];
 
-export function drawGrid() {
-  for (let x = 0; x < grid.length; x++) {
-    for (let y = 0; y < grid[0].length; y++) {
-      // Code that draws here
-    }
+export const playfield = [];
+
+for (let row = -2; row < 20; row++) {
+  playfield[row] = [];
+
+  for (let col = 0; col < 10; col++) {
+    playfield[row][col] = 0;
   }
 }
 
-const grid = [];
-
-const blocks = {
+export const blocks = {
   I: [
     [0, 1, 0, 0],
     [0, 1, 0, 0],
@@ -54,6 +51,39 @@ const blocks = {
     [0, 1, 0],
   ],
 };
+
+export const colours = {
+  I: 'cyan',
+  O: 'yellow',
+  T: 'purple',
+  S: 'green',
+  Z: 'red',
+  J: 'blue',
+  L: 'orange',
+};
+
+
+export function resizeCanvas() {
+  const newHeight = window.innerHeight;
+  const newWidth = document.body.clientWidth;
+
+  canvas.height = newHeight / 1.05;
+  canvas.width = newWidth / 1.02;
+}
+
+export function drawGrid() {
+  for (let x = 0; x < grid.length; x++) {
+    for (let y = 0; y < grid[0].length; y++) {
+      // Code that draws here
+    }
+  }
+}
+
+
+
+export function showGameOver() {
+  cancelAnimationFrame(rAF);
+}
 
 /*
 Canvas Functions we'll prolly need:
