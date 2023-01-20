@@ -2,55 +2,8 @@ import { rAF } from './game_functions.mjs';
 
 export const canvas = document.querySelector('#gameScreen');
 export const context = canvas.getContext('2d');
-const grid = [];
 
-export const playfield = [];
 
-for (let row = -2; row < 20; row++) {
-  playfield[row] = [];
-
-  for (let col = 0; col < 10; col++) {
-    playfield[row][col] = 0;
-  }
-}
-
-export const blocks = {
-  I: [
-    [0, 1, 0, 0],
-    [0, 1, 0, 0],
-    [0, 1, 0, 0],
-    [0, 1, 0, 0],
-  ],
-  J: [
-    [0, 1, 0],
-    [0, 1, 0],
-    [1, 1, 0],
-  ],
-  L: [
-    [0, 1, 0],
-    [0, 1, 0],
-    [0, 1, 1],
-  ],
-  O: [
-    [1, 1],
-    [1, 1],
-  ],
-  S: [
-    [0, 1, 1],
-    [1, 1, 0],
-    [0, 0, 0],
-  ],
-  Z: [
-    [1, 1, 0],
-    [0, 1, 1],
-    [0, 0, 0],
-  ],
-  T: [
-    [0, 0, 0],
-    [1, 1, 1],
-    [0, 1, 0],
-  ],
-};
 
 export const colours = {
   I: 'cyan',
@@ -71,18 +24,14 @@ export function resizeCanvas() {
   canvas.width = newWidth / 1.02;
 }
 
-export function drawGrid() {
-  for (let x = 0; x < grid.length; x++) {
-    for (let y = 0; y < grid[0].length; y++) {
-      // Code that draws here
-    }
-  }
-}
 
+
+let gameOver = false;
 
 
 export function showGameOver() {
   cancelAnimationFrame(rAF);
+  gameOver = true;
 }
 
 /*

@@ -1,7 +1,6 @@
 'use strict';
 
-import { resizeCanvas, drawGrid, canvas, context } from './canvas.mjs';
-import { start } from './game_functions.mjs';
+import { resizeCanvas, canvas, context } from './canvas.mjs';
 
 
 function init() {
@@ -33,8 +32,7 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
-  drawGrid();
-  start();
+
 }
 
 

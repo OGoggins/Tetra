@@ -5,11 +5,10 @@ Game Functions we will need:
 - tbc
 */
 
-
 import { colours, canvas, context, showGameOver } from './canvas.mjs';
 
 const tetrominoSequence = [];
-const grid = 32;
+export const grid = 25;
 
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
 
@@ -24,41 +23,41 @@ for (let row = -2; row < 20; row++) {
 }
 
 const blocks = {
-  I: [
-    [0, 1, 0, 0],
-    [0, 1, 0, 0],
-    [0, 1, 0, 0],
-    [0, 1, 0, 0],
+  'I': [
+    [0,0,0,0],
+    [1,1,1,1],
+    [0,0,0,0],
+    [0,0,0,0]
   ],
-  J: [
-    [0, 1, 0],
-    [0, 1, 0],
-    [1, 1, 0],
+  'J': [
+    [1,0,0],
+    [1,1,1],
+    [0,0,0],
   ],
-  L: [
-    [0, 1, 0],
-    [0, 1, 0],
-    [0, 1, 1],
+  'L': [
+    [0,0,1],
+    [1,1,1],
+    [0,0,0],
   ],
-  O: [
-    [1, 1],
-    [1, 1],
+  'O': [
+    [1,1],
+    [1,1],
   ],
-  S: [
-    [0, 1, 1],
-    [1, 1, 0],
-    [0, 0, 0],
+  'S': [
+    [0,1,1],
+    [1,1,0],
+    [0,0,0],
   ],
-  Z: [
-    [1, 1, 0],
-    [0, 1, 1],
-    [0, 0, 0],
+  'Z': [
+    [1,1,0],
+    [0,1,1],
+    [0,0,0],
   ],
-  T: [
-    [0, 0, 0],
-    [1, 1, 1],
-    [0, 1, 0],
-  ],
+  'T': [
+    [0,1,0],
+    [1,1,1],
+    [0,0,0],
+  ]
 };
 
 function getRandomInt(min, max) {
@@ -148,31 +147,37 @@ function placeTet() {
 }
 
 
-let tetromino = getNextTetromino();
 let count = 0;
-export let rAF = null;
-let gameOver = false;
+let tetromino = getNextTetromino();
+export let rAF = null;  // keep track of the animation frame so we can cancel it
+
 
 function loop() {
   rAF = requestAnimationFrame(loop);
-  context.clearRect(0, 0, canvas.width, canvas.hight);
+  context.clearRect(0,0,canvas.width,canvas.height);
 
+  // draw the playfield
   for (let row = 0; row < 20; row++) {
     for (let col = 0; col < 10; col++) {
       if (playfield[row][col]) {
         const name = playfield[row][col];
         context.fillStyle = colours[name];
 
-        context.fillRect(col * grid, row * grid, grid - 1, grid - 1);
+        // drawing 1 px smaller than the grid creates a grid effect
+        context.fillRect(col * grid, row * grid, grid-1, grid-1);
       }
     }
   }
 
+  // draw the active tetromino
   if (tetromino) {
-    if (++count > 120) {
+
+    // tetromino falls every 35 frames
+    if (++count > 30) {
       tetromino.row++;
       count = 0;
 
+      // place piece if it runs into anything
       if (!validMove(tetromino.matrix, tetromino.row, tetromino.col)) {
         tetromino.row--;
         placeTet();
@@ -184,13 +189,15 @@ function loop() {
     for (let row = 0; row < tetromino.matrix.length; row++) {
       for (let col = 0; col < tetromino.matrix[row].length; col++) {
         if (tetromino.matrix[row][col]) {
-          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid - 1, grid - 1);
+
+          // drawing 1 px smaller than the grid creates a grid effect
+          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid-1, grid-1);
         }
       }
     }
   }
 }
 
-export function start() {
-  rAF = requestAnimationFrame(loop);
-}
+// how it starts can be put in a function to control if you want to start or restart
+rAF = requestAnimationFrame(loop);
+
