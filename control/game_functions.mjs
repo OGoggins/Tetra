@@ -5,7 +5,7 @@ Game Functions we will need:
 - tbc
 */
 
-import { colours, canvas, context, showGameOver } from './canvas.mjs';
+import { colours, canvas, context, showGameOver, gameOver } from './canvas.mjs';
 
 const tetrominoSequence = [];
 export const grid = 25;
@@ -95,7 +95,7 @@ function getNextTetromino() {
   };
 }
 
-function rotate(matrix) {
+export function rotate(matrix) {
   const N = matrix.length - 1;
   const result = matrix.map((row, i) =>
     row.map((val, j) => matrix[N - j][i]));
@@ -103,7 +103,7 @@ function rotate(matrix) {
   return result;
 }
 
-function validMove(matrix, cellRow, cellCol) {
+export function validMove(matrix, cellRow, cellCol) {
   for (let row = 0; row < matrix.length; row++) {
     for (let col = 0; col < matrix[row].length; col++) {
       if (matrix[row][col] && (
@@ -119,7 +119,7 @@ function validMove(matrix, cellRow, cellCol) {
   return true;
 }
 // can move to canvas.mjs
-function placeTet() {
+export function placeTet() {
   for (let row = 0; row < tetromino.matrix.length; row++) {
     for (let col = 0; col < tetromino.matrix[row].length; col++) {
       if (tetromino.matrix[row][col]) {
@@ -148,7 +148,7 @@ function placeTet() {
 
 
 let count = 0;
-let tetromino = getNextTetromino();
+export let tetromino = getNextTetromino();
 export let rAF = null;  // keep track of the animation frame so we can cancel it
 
 
@@ -197,6 +197,9 @@ function loop() {
     }
   }
 }
+
+
+
 
 // how it starts can be put in a function to control if you want to start or restart
 rAF = requestAnimationFrame(loop);

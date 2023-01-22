@@ -26,7 +26,7 @@ export function resizeCanvas() {
 
 
 
-let gameOver = false;
+export let gameOver = false;
 
 
 export function showGameOver() {
