@@ -1,6 +1,7 @@
 'use strict';
 
 import { resizeCanvas, canvas, context } from './canvas.mjs';
+import { controler } from './controls.mjs';
 
 
 function init() {
@@ -32,6 +33,7 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
+  document.addEventListener('keydown', controler)
 
 }
 
