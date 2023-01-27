@@ -5,16 +5,11 @@ async function prepareCache() {
 
 const RESOURCES = [
   './',
-  './index.html',
-  './sw.js',
-  './index.mjs',
-  './canvas.mjs',
-  './index.css',
-  '../assets/icon.png',
-  './manifest.json',
+  '../control',
+  '../assets',
 ];
 
 const CACHE = 'tetra';
 
 self.addEventListener('install', prepareCache);
-self.addEventListener('fetch', ()=>console.log("fetch"));
+self.addEventListener('fetch', () => console.log('Fetch request received'));

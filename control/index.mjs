@@ -33,8 +33,7 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
-  document.addEventListener('keydown', controler)
-
+  document.addEventListener('keydown', controler);
 }
 
 
