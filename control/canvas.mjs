@@ -4,7 +4,6 @@ export const canvas = document.querySelector('#gameScreen');
 export const context = canvas.getContext('2d');
 
 
-
 export const colours = {
   I: 'cyan',
   O: 'yellow',
@@ -23,7 +22,6 @@ export function resizeCanvas() {
   canvas.height = newHeight / 1.05;
   canvas.width = newWidth / 1.02;
 }
-
 
 
 export let gameOver = false;
