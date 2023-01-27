@@ -17,3 +17,4 @@ const RESOURCES = [
 const CACHE = 'tetra';
 
 self.addEventListener('install', prepareCache);
+self.addEventListener('fetch', ()=>console.log("fetch"));
