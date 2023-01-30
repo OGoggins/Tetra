@@ -7,7 +7,7 @@ import { controler } from './controls.mjs';
 
 function init() {
   registerSW();
-  resizeCanvas();
+  // resizeCanvas();
   prepareEventListeners();
   context.clearRect(0, 0, canvas.width, canvas.height);
 

@@ -5,7 +5,7 @@ Game Functions we will need:
 - tbc
 */
 
-import { colours, canvas, context, showGameOver, playfield, blocks } from './canvas.mjs';
+import { colours, canvas, context, showGameOver, playfield, blocks, playHight, playWidth } from './canvas.mjs';
 
 const tetrominoSequence = [];
 export const grid = 25;
@@ -101,7 +101,6 @@ export function placeTet() {
 
 
 let count = 0;
-// export let tetromino = getNextTetromino();
 export let tetromino = null;
 console.log(tetromino);
 export let rAF = null; // keep track of the animation frame so we can cancel it
@@ -112,8 +111,8 @@ function loop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   // draw the playfield
-  for (let row = 0; row < 20; row++) {
-    for (let col = 0; col < 10; col++) {
+  for (let row = 0; row < playHight; row++) {
+    for (let col = 0; col < playWidth; col++) {
       if (playfield[row][col]) {
         const name = playfield[row][col];
         context.fillStyle = colours[name];
@@ -126,7 +125,7 @@ function loop() {
 
   // draw the active tetromino
   if (tetromino) {
-    // tetromino falls every 35 frames
+    // tetromino falls every 30 frames
     if (++count > 30) {
       tetromino.row++;
       count = 0;

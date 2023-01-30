@@ -5,14 +5,18 @@ export const canvas = document.querySelector('#gameScreen');
 export const context = canvas.getContext('2d');
 export const playfield = [];
 
+export const playHight = 20;
+export const playWidth = 12;
 
-for (let row = -2; row < 20; row++) {
+
+for (let row = -2; row < playHight; row++) {
   playfield[row] = [];
 
-  for (let col = 0; col < 10; col++) {
+  for (let col = 0; col < playWidth; col++) {
     playfield[row][col] = 0;
   }
 }
+console.log(playfield);
 
 export const blocks = {
   I: [
