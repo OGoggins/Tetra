@@ -5,67 +5,13 @@ Game Functions we will need:
 - tbc
 */
 
-<<<<<<< Updated upstream
-import { colours, canvas, context, showGameOver, gameOver } from './canvas.mjs';
-=======
 import { colours, canvas, context, showGameOver, playfield, blocks } from './canvas.mjs';
->>>>>>> Stashed changes
 
 const tetrominoSequence = [];
 export const grid = 25;
 
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
 
-<<<<<<< Updated upstream
-export const playfield = [];
-
-for (let row = -2; row < 20; row++) {
-  playfield[row] = [];
-
-  for (let col = 0; col < 10; col++) {
-    playfield[row][col] = 0;
-  }
-}
-
-const blocks = {
-  'I': [
-    [0,0,0,0],
-    [1,1,1,1],
-    [0,0,0,0],
-    [0,0,0,0]
-  ],
-  'J': [
-    [1,0,0],
-    [1,1,1],
-    [0,0,0],
-  ],
-  'L': [
-    [0,0,1],
-    [1,1,1],
-    [0,0,0],
-  ],
-  'O': [
-    [1,1],
-    [1,1],
-  ],
-  'S': [
-    [0,1,1],
-    [1,1,0],
-    [0,0,0],
-  ],
-  'Z': [
-    [1,1,0],
-    [0,1,1],
-    [0,0,0],
-  ],
-  'T': [
-    [0,1,0],
-    [1,1,1],
-    [0,0,0],
-  ]
-};
-=======
->>>>>>> Stashed changes
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -155,20 +101,15 @@ export function placeTet() {
 
 
 let count = 0;
-<<<<<<< Updated upstream
-export let tetromino = getNextTetromino();
-export let rAF = null;  // keep track of the animation frame so we can cancel it
-=======
 // export let tetromino = getNextTetromino();
 export let tetromino = null;
 console.log(tetromino);
 export let rAF = null; // keep track of the animation frame so we can cancel it
->>>>>>> Stashed changes
 
 
 function loop() {
   rAF = requestAnimationFrame(loop);
-  context.clearRect(0,0,canvas.width,canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
 
   // draw the playfield
   for (let row = 0; row < 20; row++) {
@@ -178,14 +119,13 @@ function loop() {
         context.fillStyle = colours[name];
 
         // drawing 1 px smaller than the grid creates a grid effect
-        context.fillRect(col * grid, row * grid, grid-1, grid-1);
+        context.fillRect(col * grid, row * grid, grid - 1, grid - 1);
       }
     }
   }
 
   // draw the active tetromino
   if (tetromino) {
-
     // tetromino falls every 35 frames
     if (++count > 30) {
       tetromino.row++;
@@ -203,9 +143,8 @@ function loop() {
     for (let row = 0; row < tetromino.matrix.length; row++) {
       for (let col = 0; col < tetromino.matrix[row].length; col++) {
         if (tetromino.matrix[row][col]) {
-
           // drawing 1 px smaller than the grid creates a grid effect
-          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid-1, grid-1);
+          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid - 1, grid - 1);
         }
       }
     }
@@ -213,15 +152,8 @@ function loop() {
 }
 
 
-
-
 // how it starts can be put in a function to control if you want to start or restart
-<<<<<<< Updated upstream
-rAF = requestAnimationFrame(loop);
-
-=======
 export function start() {
   tetromino = getNextTetromino();
   rAF = requestAnimationFrame(loop);
 }
->>>>>>> Stashed changes

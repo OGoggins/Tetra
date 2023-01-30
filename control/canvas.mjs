@@ -73,7 +73,6 @@ export function resizeCanvas() {
 }
 
 
-
 export let gameOver = false;
 
 

@@ -35,11 +35,6 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
-<<<<<<< Updated upstream
-  document.addEventListener('keydown', controler)
-
-=======
->>>>>>> Stashed changes
 }
 
 
