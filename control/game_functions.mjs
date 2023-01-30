@@ -5,13 +5,18 @@ Game Functions we will need:
 - tbc
 */
 
+<<<<<<< Updated upstream
 import { colours, canvas, context, showGameOver, gameOver } from './canvas.mjs';
+=======
+import { colours, canvas, context, showGameOver, playfield, blocks } from './canvas.mjs';
+>>>>>>> Stashed changes
 
 const tetrominoSequence = [];
 export const grid = 25;
 
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
 
+<<<<<<< Updated upstream
 export const playfield = [];
 
 for (let row = -2; row < 20; row++) {
@@ -59,6 +64,8 @@ const blocks = {
     [0,0,0],
   ]
 };
+=======
+>>>>>>> Stashed changes
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -148,8 +155,15 @@ export function placeTet() {
 
 
 let count = 0;
+<<<<<<< Updated upstream
 export let tetromino = getNextTetromino();
 export let rAF = null;  // keep track of the animation frame so we can cancel it
+=======
+// export let tetromino = getNextTetromino();
+export let tetromino = null;
+console.log(tetromino);
+export let rAF = null; // keep track of the animation frame so we can cancel it
+>>>>>>> Stashed changes
 
 
 function loop() {
@@ -202,5 +216,12 @@ function loop() {
 
 
 // how it starts can be put in a function to control if you want to start or restart
+<<<<<<< Updated upstream
 rAF = requestAnimationFrame(loop);
 
+=======
+export function start() {
+  tetromino = getNextTetromino();
+  rAF = requestAnimationFrame(loop);
+}
+>>>>>>> Stashed changes

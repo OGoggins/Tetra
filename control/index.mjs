@@ -1,5 +1,6 @@
 'use strict';
 
+import { start } from './game_functions.mjs';
 import { resizeCanvas, canvas, context } from './canvas.mjs';
 import { controler } from './controls.mjs';
 
@@ -11,12 +12,13 @@ function init() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   main();
+  start();
 }
 
 function prepareEventListeners() {
   window.addEventListener('resize', resizeCanvas);
 
-  // KB Listeners Here
+  document.addEventListener('keydown', controler);
 }
 
 async function registerSW() {
@@ -33,8 +35,11 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
+<<<<<<< Updated upstream
   document.addEventListener('keydown', controler)
 
+=======
+>>>>>>> Stashed changes
 }
 
 
