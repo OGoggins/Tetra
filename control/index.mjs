@@ -1,23 +1,20 @@
 'use strict';
 
-import { start } from './game_functions.mjs';
 import { resizeCanvas, canvas, context } from './canvas.mjs';
 import { controler } from './controls.mjs';
 
 
 function init() {
   registerSW();
-  // resizeCanvas();
+  resizeCanvas();
   prepareEventListeners();
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   main();
-  start();
 }
 
 function prepareEventListeners() {
   window.addEventListener('resize', resizeCanvas);
-
   document.addEventListener('keydown', controler);
 }
 
