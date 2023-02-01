@@ -56,7 +56,6 @@ export const blocks = {
   ],
 };
 
-
 export const colours = {
   I: 'cyan',
   O: 'yellow',

@@ -5,13 +5,14 @@ Game Functions we will need:
 - tbc
 */
 
+
 import { colours, canvas, context, showGameOver, playfield, blocks, playHight, playWidth } from './canvas.mjs';
+
 
 const tetrominoSequence = [];
 export const grid = 25;
 
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
-
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -101,8 +102,10 @@ export function placeTet() {
 
 
 let count = 0;
+
 export let tetromino = null;
 console.log(tetromino);
+
 export let rAF = null; // keep track of the animation frame so we can cancel it
 
 
@@ -125,7 +128,9 @@ function loop() {
 
   // draw the active tetromino
   if (tetromino) {
+
     // tetromino falls every 30 frames
+
     if (++count > 30) {
       tetromino.row++;
       count = 0;
@@ -152,7 +157,9 @@ function loop() {
 
 
 // how it starts can be put in a function to control if you want to start or restart
+
 export function start() {
   tetromino = getNextTetromino();
   rAF = requestAnimationFrame(loop);
 }
+
