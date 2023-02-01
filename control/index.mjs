@@ -32,5 +32,5 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
-
+}
 window.addEventListener('load', init);
