@@ -15,7 +15,6 @@ function init() {
 }
 
 function prepareEventListeners() {
-  window.addEventListener('resize', resizeCanvas);
   document.addEventListener('keydown', controler);
 }
 
