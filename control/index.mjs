@@ -1,22 +1,21 @@
 'use strict';
 
-import { resizeCanvas, canvas, context } from './canvas.mjs';
+import { canvas, context } from './canvas.mjs';
 import { controler } from './controls.mjs';
+import { start } from './game_functions.mjs';
 
 
 function init() {
   registerSW();
-  resizeCanvas();
   prepareEventListeners();
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   main();
+  start();
 }
 
 function prepareEventListeners() {
-  window.addEventListener('resize', resizeCanvas);
-
-  // KB Listeners Here
+  document.addEventListener('keydown', controler);
 }
 
 async function registerSW() {
@@ -33,8 +32,5 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
-  document.addEventListener('keydown', controler);
 }
-
-
 window.addEventListener('load', init);
