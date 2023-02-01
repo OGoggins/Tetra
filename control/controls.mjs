@@ -1,5 +1,5 @@
 import { gameOver } from './canvas.mjs';
-import { rotate, tetromino, validMove, placeTet } from './game_functions.mjs';
+import { rotate, tetromino, validMove, placeTet, updateScore } from './game_functions.mjs';
 
 
 export function controler(e) {
@@ -34,6 +34,8 @@ export function controler(e) {
       tetromino.row = row - 1;
 
       placeTet();
+
+      updateScore(2);
       return;
     }
 
