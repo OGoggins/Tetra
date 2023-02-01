@@ -6,4 +6,8 @@
     border-color: black;
     margin: 0;
     padding: 0;
+
+    left: 35%;
+    right: 65%;
+    position: absolute;
 }

@@ -15,8 +15,7 @@ function init() {
 
 function prepareEventListeners() {
   window.addEventListener('resize', resizeCanvas);
-
-  // KB Listeners Here
+  document.addEventListener('keydown', controler);
 }
 
 async function registerSW() {
@@ -33,8 +32,5 @@ async function registerSW() {
 
 function main() {
   window.requestAnimationFrame(main);
-  document.addEventListener('keydown', controler);
-}
-
 
 window.addEventListener('load', init);

@@ -5,60 +5,14 @@ Game Functions we will need:
 - tbc
 */
 
-import { colours, canvas, context, showGameOver } from './canvas.mjs';
+
+import { colours, canvas, context, showGameOver, playfield, blocks, playHight, playWidth } from './canvas.mjs';
+
 
 const tetrominoSequence = [];
 export const grid = 25;
 
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
-
-export const playfield = [];
-
-for (let row = -2; row < 20; row++) {
-  playfield[row] = [];
-
-  for (let col = 0; col < 10; col++) {
-    playfield[row][col] = 0;
-  }
-}
-
-const blocks = {
-  I: [
-    [0, 0, 0, 0],
-    [1, 1, 1, 1],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ],
-  J: [
-    [1, 0, 0],
-    [1, 1, 1],
-    [0, 0, 0],
-  ],
-  L: [
-    [0, 0, 1],
-    [1, 1, 1],
-    [0, 0, 0],
-  ],
-  O: [
-    [1, 1],
-    [1, 1],
-  ],
-  S: [
-    [0, 1, 1],
-    [1, 1, 0],
-    [0, 0, 0],
-  ],
-  Z: [
-    [1, 1, 0],
-    [0, 1, 1],
-    [0, 0, 0],
-  ],
-  T: [
-    [0, 1, 0],
-    [1, 1, 1],
-    [0, 0, 0],
-  ],
-};
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -148,7 +102,10 @@ export function placeTet() {
 
 
 let count = 0;
-export let tetromino = getNextTetromino();
+
+export let tetromino = null;
+console.log(tetromino);
+
 export let rAF = null; // keep track of the animation frame so we can cancel it
 
 
@@ -157,8 +114,8 @@ function loop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   // draw the playfield
-  for (let row = 0; row < 20; row++) {
-    for (let col = 0; col < 10; col++) {
+  for (let row = 0; row < playHight; row++) {
+    for (let col = 0; col < playWidth; col++) {
       if (playfield[row][col]) {
         const name = playfield[row][col];
         context.fillStyle = colours[name];
@@ -171,7 +128,9 @@ function loop() {
 
   // draw the active tetromino
   if (tetromino) {
-    // tetromino falls every 35 frames
+
+    // tetromino falls every 30 frames
+
     if (++count > 30) {
       tetromino.row++;
       count = 0;
@@ -198,4 +157,9 @@ function loop() {
 
 
 // how it starts can be put in a function to control if you want to start or restart
-rAF = requestAnimationFrame(loop);
+
+export function start() {
+  tetromino = getNextTetromino();
+  rAF = requestAnimationFrame(loop);
+}
+
