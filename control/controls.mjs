@@ -1,5 +1,5 @@
 import { gameOver } from './canvas.mjs';
-import { rotate, tetromino, validMove, placeTet } from './game_functions.mjs';
+import { rotate, tetromino, validMove, placeTet, updateScore } from './game_functions.mjs';
 
 
 export function controler(e) {
@@ -34,9 +34,55 @@ export function controler(e) {
       tetromino.row = row - 1;
 
       placeTet();
+
+      updateScore(2);
       return;
     }
 
     tetromino.row = row;
+  }
+
+  // Mobile Tap
+  if (e === 'touchstart') {
+    const matrix = rotate(tetromino.matrix);
+    if (validMove(matrix, tetromino.row, tetromino.col)) {
+      tetromino.matrix = matrix;
+    }
+  }
+}
+
+
+export function handleTouch(touchstartX, touchstartY, touchendX, touchendY) {
+  if (touchendX < touchstartX || touchendX > touchstartX) {
+    // Left Swipe
+    const col = touchendX < touchstartX
+      ? tetromino.col - 1
+      : tetromino.col + 1;
+
+    if (validMove(tetromino.matrix, tetromino.row, col)) {
+      tetromino.col = col;
+    }
+  }
+  if (touchendY < touchstartY) {
+    // Down Swipe
+    const row = tetromino.row + 1;
+
+    if (!validMove(tetromino.matrix, row, tetromino.col)) {
+      tetromino.row = row - 1;
+
+      placeTet();
+
+      updateScore(2);
+      return;
+    }
+
+    tetromino.row = row;
+  }
+  if (touchendY > touchstartY) {
+    // Up Swipe
+    const matrix = rotate(tetromino.matrix);
+    if (validMove(matrix, tetromino.row, tetromino.col)) {
+      tetromino.matrix = matrix;
+    }
   }
 }

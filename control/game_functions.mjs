@@ -87,6 +87,7 @@ export function placeTet() {
 
   for (let row = playfield.length - 1; row >= 0;) {
     if (playfield[row].every(cell => !!cell)) {
+      lineClearCounter++;
       for (let r = row; r >= 0; r--) {
         for (let c = 0; c < playfield[r].length; c++) {
           playfield[r][c] = playfield[r - 1][c];
@@ -96,7 +97,22 @@ export function placeTet() {
       row--;
     }
   }
-
+  switch (lineClearCounter) {
+    case 1:
+      updateScore(100);
+      break;
+    case 2:
+      updateScore(300);
+      break;
+    case 3:
+      updateScore(500);
+      break;
+    case 4:
+      updateScore(800);
+      break;
+    default:
+      break;
+  }
   tetromino = getNextTetromino();
 }
 
@@ -104,7 +120,6 @@ export function placeTet() {
 let count = 0;
 
 export let tetromino = null;
-console.log(tetromino);
 
 export let rAF = null; // keep track of the animation frame so we can cancel it
 
@@ -112,6 +127,7 @@ export let rAF = null; // keep track of the animation frame so we can cancel it
 function loop() {
   rAF = requestAnimationFrame(loop);
   context.clearRect(0, 0, canvas.width, canvas.height);
+  lineClearCounter = 0;
 
   // draw the playfield
   for (let row = 0; row < playHight; row++) {
@@ -128,7 +144,6 @@ function loop() {
 
   // draw the active tetromino
   if (tetromino) {
-
     // tetromino falls every 30 frames
 
     if (++count > 30) {
@@ -139,6 +154,7 @@ function loop() {
       if (!validMove(tetromino.matrix, tetromino.row, tetromino.col)) {
         tetromino.row--;
         placeTet();
+        updateScore(1);
       }
     }
 
@@ -163,3 +179,10 @@ export function start() {
   rAF = requestAnimationFrame(loop);
 }
 
+let lineClearCounter = 0;
+let score = 0;
+export function updateScore(points) {
+  score = score + points;
+  const scoreLocation = document.querySelector('#score');
+  scoreLocation.textContent = `Score: ${score}`;
+}
