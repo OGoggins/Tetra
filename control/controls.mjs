@@ -52,19 +52,22 @@ export function controler(e) {
 }
 
 
-export function handleTouch(touchstartX, touchstartY, touchendX, touchendY) {
-  if (touchendX < touchstartX || touchendX > touchstartX) {
-    // Left Swipe
-    const col = touchendX < touchstartX
-      ? tetromino.col - 1
-      : tetromino.col + 1;
-
+export function handleTouch(touchendX, touchendY) {
+  console.log(touchendX, touchendY);
+  if (touchendX < -10) {
+    const col = tetromino.col - 1;
     if (validMove(tetromino.matrix, tetromino.row, col)) {
       tetromino.col = col;
     }
+    return;
+  } else if (touchendX > 10) {
+    const col = tetromino.col + 1;
+    if (validMove(tetromino.matrix, tetromino.row, col)) {
+      tetromino.col = col;
+    }
+    return;
   }
-  if (touchendY < touchstartY) {
-    // Down Swipe
+  if (touchendY > 10) {
     const row = tetromino.row + 1;
 
     if (!validMove(tetromino.matrix, row, tetromino.col)) {
@@ -77,9 +80,7 @@ export function handleTouch(touchstartX, touchstartY, touchendX, touchendY) {
     }
 
     tetromino.row = row;
-  }
-  if (touchendY > touchstartY) {
-    // Up Swipe
+  } else if (touchendY < -10) {
     const matrix = rotate(tetromino.matrix);
     if (validMove(matrix, tetromino.row, tetromino.col)) {
       tetromino.matrix = matrix;

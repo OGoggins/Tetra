@@ -17,14 +17,14 @@ function init() {
 function prepareEventListeners() {
   document.addEventListener('keydown', controler);
   document.addEventListener('touchstart', function (event) {
-    touchstartX = event.screenX;
-    touchstartY = event.screenY;
+    touchstartX = event.touches[0].clientX;
+    touchstartY = event.touches[0].clientY;
   });
 
   document.addEventListener('touchend', function (event) {
-    touchendX = event.screenX;
-    touchendY = event.screenY;
-    handleTouch(touchstartX, touchstartY, touchendX, touchendY);
+    touchendX = event.changedTouches[0].clientX - touchstartX;
+    touchendY = event.changedTouches[0].clientY - touchstartY;
+    handleTouch(touchendX, touchendY);
   });
 }
 
