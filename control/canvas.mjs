@@ -16,7 +16,7 @@ for (let row = -2; row < playHight; row++) {
     playfield[row][col] = 0;
   }
 }
-console.log(playfield);
+
 
 export const blocks = {
   I: [

@@ -1,4 +1,12 @@
+html {
+    background: linear-gradient(#3900c5, #008bff);
+    width: 100%;
+    height: 100%;
+}
 
+#score {
+    color: white
+}
 
 #gameScreen {
     border-style: solid;
