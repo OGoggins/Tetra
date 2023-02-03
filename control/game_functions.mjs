@@ -11,38 +11,8 @@ import { colours, canvas, context, showGameOver, playfield, blocks, playHight, p
 
 const tetrominoSequence = [];
 export const grid = 25;
-let fps, fpsInterval, startTime, now, then, elapsed;
+
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
-let timer = 30;
-
-
-function startAnimate(fps) {
-
-}
-
-
-function fpsMeter() {
-  let prevTime = Date.now(),
-      frames = 0;
-
-  requestAnimationFrame(function loopfps() {
-    const time = Date.now();
-    frames++;
-    if (time > prevTime + 1000) {
-      let fps = Math.round( ( frames * 1000 ) / ( time - prevTime ) );
-      prevTime = time;
-      frames = 0;
-
-      console.info('FPS: ', fps);
-      timer = fps + 30;
-    }
-    
-    console.log(timer);
-    requestAnimationFrame(loopfps);
-  });
-}
-
-
 
 
 function getRandomInt(min, max) {
@@ -128,18 +98,23 @@ export function placeTet() {
       row--;
     }
   }
+  const audio = new Audio('../assets/line_clear.wav');
   switch (lineClearCounter) {
     case 1:
       updateScore(100);
+      audio.play();
       break;
     case 2:
       updateScore(300);
+      audio.play();
       break;
     case 3:
       updateScore(500);
+      audio.play();
       break;
     case 4:
       updateScore(800);
+      audio.play();
       break;
     default:
       break;
@@ -159,26 +134,25 @@ function loop() {
   rAF = requestAnimationFrame(loop);
   context.clearRect(0, 0, canvas.width, canvas.height);
   lineClearCounter = 0;
-  
+
   // draw the playfield
   for (let row = 0; row < playHight; row++) {
     for (let col = 0; col < playWidth; col++) {
       if (playfield[row][col]) {
         const name = playfield[row][col];
         context.fillStyle = colours[name];
-        
+
         // drawing 1 px smaller than the grid creates a grid effect
         context.fillRect(col * grid, row * grid, grid - 1, grid - 1);
       }
     }
   }
-  
+
   // draw the active tetromino
   if (tetromino) {
     // tetromino falls every 30 frames
-    
-    if (++count > timer) {
-      fpsMeter();
+
+    if (++count > 30) {
       tetromino.row++;
       count = 0;
 
@@ -187,6 +161,8 @@ function loop() {
         tetromino.row--;
         placeTet();
         updateScore(1);
+        const audio = new Audio('../assets/place.wav');
+        audio.play();
       }
     }
 
