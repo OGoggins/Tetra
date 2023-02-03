@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- HEAD -->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+        <link rel="shortcut icon" type="image/png" href="../assets/icon.png">
+        <link rel="apple-touch-icon" href="../assets/icon.png">
+        <link rel="manifest" href="manifest.json" />
+        <title>Tetra</title>
+    </head>
+
+    <!-- BODY -->
+    <body>    
+        
+        <p id="Welcome">Welcome to Tetra</p>
+        <button id="start">Press To Begin</button>
+    </body>
+
+    <script>
+        const button = document.querySelector('#start');
+        button.addEventListener('click', start);
+        
+        
+        
+        function start(){
+            ran = Math.floor(Math.random() * 2);
+            console.log(ran);
+
+            if (ran == 0) {
+                window.location.replace('https://ogoggins.github.io/Tetra/control')
+            } else {
+                window.location.replace('https://ogoggins.github.io/Tetra/Easy')
+            }
+        }
+
+
+    </script>
+</html>

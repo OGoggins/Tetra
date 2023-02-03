@@ -27,8 +27,11 @@ function generateSequence() {
 
   while (sequence.length) {
     const rand = getRandomInt(0, sequence.length - 1);
+    console.log(rand, "rand");
     const name = sequence.splice(rand, 1)[0];
+    console.log(name, "name");
     tetrominoSequence.push(name);
+    console.log(tetrominoSequence, "sequenc");
   }
 }
 
