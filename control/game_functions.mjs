@@ -11,8 +11,39 @@ import { colours, canvas, context, showGameOver, playfield, blocks, playHight, p
 
 const tetrominoSequence = [];
 export const grid = 25;
-
+let fps, fpsInterval, startTime, now, then, elapsed;
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
+let timer = 30;
+
+
+function startAnimate(fps) {
+
+}
+
+
+function fpsMeter() {
+  let prevTime = Date.now(),
+      frames = 0;
+
+  requestAnimationFrame(function loopfps() {
+    const time = Date.now();
+    frames++;
+    if (time > prevTime + 1000) {
+      let fps = Math.round( ( frames * 1000 ) / ( time - prevTime ) );
+      prevTime = time;
+      frames = 0;
+
+      console.info('FPS: ', fps);
+      timer = fps + 30;
+    }
+    
+    console.log(timer);
+    requestAnimationFrame(loopfps);
+  });
+}
+
+
+
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -87,6 +118,7 @@ export function placeTet() {
 
   for (let row = playfield.length - 1; row >= 0;) {
     if (playfield[row].every(cell => !!cell)) {
+      lineClearCounter++;
       for (let r = row; r >= 0; r--) {
         for (let c = 0; c < playfield[r].length; c++) {
           playfield[r][c] = playfield[r - 1][c];
@@ -96,7 +128,22 @@ export function placeTet() {
       row--;
     }
   }
-
+  switch (lineClearCounter) {
+    case 1:
+      updateScore(100);
+      break;
+    case 2:
+      updateScore(300);
+      break;
+    case 3:
+      updateScore(500);
+      break;
+    case 4:
+      updateScore(800);
+      break;
+    default:
+      break;
+  }
   tetromino = getNextTetromino();
 }
 
@@ -104,7 +151,6 @@ export function placeTet() {
 let count = 0;
 
 export let tetromino = null;
-console.log(tetromino);
 
 export let rAF = null; // keep track of the animation frame so we can cancel it
 
@@ -112,26 +158,27 @@ export let rAF = null; // keep track of the animation frame so we can cancel it
 function loop() {
   rAF = requestAnimationFrame(loop);
   context.clearRect(0, 0, canvas.width, canvas.height);
-
+  lineClearCounter = 0;
+  
   // draw the playfield
   for (let row = 0; row < playHight; row++) {
     for (let col = 0; col < playWidth; col++) {
       if (playfield[row][col]) {
         const name = playfield[row][col];
         context.fillStyle = colours[name];
-
+        
         // drawing 1 px smaller than the grid creates a grid effect
         context.fillRect(col * grid, row * grid, grid - 1, grid - 1);
       }
     }
   }
-
+  
   // draw the active tetromino
   if (tetromino) {
-
     // tetromino falls every 30 frames
-
-    if (++count > 30) {
+    
+    if (++count > timer) {
+      fpsMeter();
       tetromino.row++;
       count = 0;
 
@@ -139,6 +186,7 @@ function loop() {
       if (!validMove(tetromino.matrix, tetromino.row, tetromino.col)) {
         tetromino.row--;
         placeTet();
+        updateScore(1);
       }
     }
 
@@ -163,3 +211,10 @@ export function start() {
   rAF = requestAnimationFrame(loop);
 }
 
+let lineClearCounter = 0;
+let score = 0;
+export function updateScore(points) {
+  score = score + points;
+  const scoreLocation = document.querySelector('#score');
+  scoreLocation.textContent = `Score: ${score}`;
+}
