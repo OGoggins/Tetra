@@ -15,7 +15,6 @@ for (let row = -2; row < playHight; row++) {
   for (let col = 0; col < playWidth; col++) {
     playfield[row][col] = 0;
   }
-
 }
 
 
@@ -73,6 +72,8 @@ export let gameOver = false;
 export function showGameOver() {
   cancelAnimationFrame(rAF);
   gameOver = true;
+  const audio = new Audio('../assets/game-lose.wav');
+  audio.play();
 }
 
 /*

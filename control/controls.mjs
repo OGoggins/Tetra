@@ -36,6 +36,8 @@ export function controler(e) {
       placeTet();
 
       updateScore(2);
+      const audio = new Audio('../assets/place.wav');
+      audio.play();
       return;
     }
 
@@ -76,6 +78,8 @@ export function handleTouch(touchendX, touchendY) {
       placeTet();
 
       updateScore(2);
+      const audio = new Audio('../assets/place.wav');
+      audio.play();
       return;
     }
 
