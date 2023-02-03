@@ -189,8 +189,26 @@ export function start() {
 
 let lineClearCounter = 0;
 let score = 0;
+
 export function updateScore(points) {
   score = score + points;
   const scoreLocation = document.querySelector('#score');
   scoreLocation.textContent = `Score: ${score}`;
+}
+
+function dif(points) {
+  switch(points) {
+    case 1000:
+      timer = 25;
+      break;
+    case 2000:
+      timer = 20;
+      break;
+    case 3000:
+      timer = 15;
+      break;
+    case 4000:
+      tiemr = 10;
+      break;
+  }
 }
