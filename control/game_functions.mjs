@@ -11,7 +11,7 @@ import { colours, canvas, context, showGameOver, playfield, blocks, playHight, p
 
 const tetrominoSequence = [];
 export const grid = 25;
-
+let timer = 30;
 // for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
 
 
@@ -152,7 +152,7 @@ function loop() {
   if (tetromino) {
     // tetromino falls every 30 frames
 
-    if (++count > 30) {
+    if (++count > timer) {
       tetromino.row++;
       count = 0;
 
@@ -194,21 +194,28 @@ export function updateScore(points) {
   score = score + points;
   const scoreLocation = document.querySelector('#score');
   scoreLocation.textContent = `Score: ${score}`;
+  dif(score);
+
 }
 
-function dif(points) {
-  switch(points) {
-    case 1000:
-      timer = 25;
-      break;
-    case 2000:
-      timer = 20;
-      break;
-    case 3000:
-      timer = 15;
-      break;
-    case 4000:
-      tiemr = 10;
-      break;
+let neededScore = 1000;
+const addedScore = 1000;
+
+function dif(points) {    
+    
+  if (points >= neededScore && timer >= 1) {
+      
+    if (timer <= addedScore) {
+        timer -= 3;
+        neededScore += addedScore;
+        
+        if (timer <= 1) {
+          timer = 1;
+        }
+      } else {
+        timer -= 5;
+        neededScore += addedScore;
+      }
+      
+    }
   }
-}
