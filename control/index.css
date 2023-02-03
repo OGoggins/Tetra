@@ -5,15 +5,23 @@ html {
 }
 
 #score {
-    color: white
+    color: white;
+    font-size: large;
+    font-family: sans-serif;
+
+
+    left: 40%;
+    right: 60%;
+    position: absolute;
 }
 
 #gameScreen {
     border-style: solid;
     border-width: 0.3em;
     border-color: black;
-    margin: 0;
-    padding: 0;
+    background-color: aliceblue;
+    margin-top: 5em;
+        
 
     left: 35%;
     right: 65%;

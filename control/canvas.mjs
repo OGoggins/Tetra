@@ -15,6 +15,7 @@ for (let row = -2; row < playHight; row++) {
   for (let col = 0; col < playWidth; col++) {
     playfield[row][col] = 0;
   }
+
 }
 
 
