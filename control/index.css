@@ -9,10 +9,11 @@ html {
     color: white;
     font-size: large;
     font-family: sans-serif;
+    white-space: nowrap;
+    text-overflow: clip;
 
-
-    left: 40%;
-    right: 60%;
+    left: 41%;
+    right: 59%;
     position: absolute;
 }
 
