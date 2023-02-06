@@ -180,13 +180,6 @@ function loop() {
 }
 
 
-// how it starts can be put in a function to control if you want to start or restart
-
-export function start() {
-  tetromino = getNextTetromino();
-  rAF = requestAnimationFrame(loop);
-}
-
 let lineClearCounter = 0;
 let score = 0;
 
@@ -195,27 +188,32 @@ export function updateScore(points) {
   const scoreLocation = document.querySelector('#score');
   scoreLocation.textContent = `Score: ${score}`;
   dif(score);
-
+  
 }
 
 let neededScore = 1000;
 const addedScore = 1000;
 
 function dif(points) {    
-    
+  
   if (points >= neededScore && timer >= 1) {
+    
+    if (timer <= 10) {
+      timer -= 3;
+      neededScore += addedScore;
       
-    if (timer <= addedScore) {
-        timer -= 3;
-        neededScore += addedScore;
-        
-        if (timer <= 1) {
-          timer = 1;
-        }
-      } else {
-        timer -= 5;
-        neededScore += addedScore;
+      if (timer <= 1) {
+        timer = 1;
       }
-      
+    } else {
+      timer -= 5;
+      neededScore += addedScore;
     }
+    
   }
+}
+
+export function start() {
+  tetromino = getNextTetromino();
+  rAF = requestAnimationFrame(loop);
+}
