@@ -66,15 +66,15 @@ export const colours = {
   L: 'orange',
 };
 
-export const weight = {
-  I : 10,
-  O : 10,
-  T: 10,
-  S: 3,
-  Z: 3,
-  J: 5,
-  L: 5,
-}
+export const weight = [
+  ['I', 6, 0],
+  ['O', 6, 3],
+  ['T', 6, 5],
+  ['S', 3, 4],
+  ['Z', 3, 6],
+  ['J', 5, 1],
+  ['L', 5, 2],
+];
 
 export let gameOver = false;
 

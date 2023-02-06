@@ -5,32 +5,56 @@ Game Functions we will need:
 */
 
 
-import { colours, canvas, context, showGameOver, playfield, blocks, playHight, playWidth } from './canvas.mjs';
+import { colours, canvas, context, showGameOver, playfield, blocks, playHight, playWidth, weight } from './canvas.mjs';
 
 
 const tetrominoSequence = [];
 export const grid = 25;
 let timer = 30;
-// for playfield and blocks want them in canvas.mjs but get accessed before int errors so left them here for time being.
+let prev = 0;
 
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
+function getRandomInt() {
+  let total = 0;
+  for (let i = 0; i < weight.length; ++i) {
+      total += weight[i][1];
+  }
+  
+  const threshold = Math.random() * total;
+  
+  total = 0;
+  for (let i = 0; i < weight.length - 1; ++i) {
+      total += weight[i][1];
 
-  return Math.floor(Math.random() * (min - max + 1)) + min;
+      if (total >= threshold) {
+        if (weight[i][2] != prev){
+          prev = weight[i][2];
+          return weight[i][2];
+
+        }
+        
+      }
+  }
+
+  
+  if (prev != 2){
+    prev = 2;
+    return weight[weight.length - 1][2];
+  }
+  
 }
+
 
 function generateSequence() {
   const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
+  const x = 7;
 
-  while (sequence.length) {
-    const rand = getRandomInt(0, sequence.length - 1);
-    console.log(rand, "rand");
-    const name = sequence.splice(rand, 1)[0];
-    console.log(name, "name");
+  for (let i = 0; i < x; i++) {
+    
+    const rand = getRandomInt();
+    const name = sequence[rand];
     tetrominoSequence.push(name);
-    console.log(tetrominoSequence, "sequenc");
+
   }
 }
 
