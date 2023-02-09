@@ -31,8 +31,8 @@ html {
 
 .buttonColourRed {
     outline: none;
-    color: #fc4444;
-    background-color: #fa881e;
+    color: #ffffff;
+    background-color: #fa3f1e;
     border: none;
     border-radius: 0.5em;
     box-shadow: 0 0.2em #999;
@@ -63,7 +63,7 @@ html {
 
 
 .buttonColour:hover {background-color: #4393b3}
-.buttonColourRed:hover {background-color: #ff7b00}
+.buttonColourRed:hover {background-color: #e03a1d}
 
 #gameScreen {
     border-style: solid;
