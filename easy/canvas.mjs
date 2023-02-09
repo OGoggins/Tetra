@@ -1,5 +1,5 @@
 
-import { rAF } from './game_functions.mjs';
+import { muteSound, rAF } from './game_functions.mjs';
 
 export const canvas = document.querySelector('#gameScreen');
 export const context = canvas.getContext('2d');
@@ -82,8 +82,10 @@ export let gameOver = false;
 export function showGameOver() {
   cancelAnimationFrame(rAF);
   gameOver = true;
-  const audio = new Audio('../assets/game-lose.wav');
-  audio.play();
+  if (muteSound === false) {
+    const audio = new Audio('../assets/game-lose.wav');
+    audio.play();
+  }
 }
 
 /*

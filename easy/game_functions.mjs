@@ -12,6 +12,8 @@ const tetrominoSequence = [];
 export const grid = 25;
 let timer = 30;
 let prev = 0;
+export let muteSound = false;
+
 
 
 function getRandomInt() {
@@ -30,7 +32,6 @@ function getRandomInt() {
         if (weight[i][2] != prev){
           prev = weight[i][2];
           return weight[i][2];
-
         }
         
       }
@@ -105,6 +106,7 @@ export function placeTet() {
     for (let col = 0; col < tetromino.matrix[row].length; col++) {
       if (tetromino.matrix[row][col]) {
         if (tetromino.row + row < 0) {
+          clearTimeout(countDown);
           return showGameOver();
         }
         playfield[tetromino.row + row][tetromino.col + col] = tetromino.name;
@@ -124,27 +126,31 @@ export function placeTet() {
       row--;
     }
   }
-  const audio = new Audio('../assets/line_clear.wav');
-  switch (lineClearCounter) {
-    case 1:
-      updateScore(100);
-      audio.play();
-      break;
-    case 2:
-      updateScore(300);
-      audio.play();
-      break;
-    case 3:
-      updateScore(500);
-      audio.play();
-      break;
-    case 4:
-      updateScore(800);
-      audio.play();
-      break;
-    default:
-      break;
+  
+  if (muteSound === false) {
+    const audio = new Audio('../assets/line_clear.wav');
+    switch (lineClearCounter) {
+      case 1:
+        updateScore(100);
+        audio.play();
+        break;
+      case 2:
+        updateScore(300);
+        audio.play();
+        break;
+      case 3:
+        updateScore(500);
+        audio.play();
+        break;
+      case 4:
+        updateScore(800);
+        audio.play();
+        break;
+      default:
+        break;
+    }
   }
+
   tetromino = getNextTetromino();
 }
 
@@ -187,8 +193,10 @@ function loop() {
         tetromino.row--;
         placeTet();
         updateScore(1);
-        const audio = new Audio('../assets/place.wav');
-        audio.play();
+        if (muteSound === false) {
+          const audio = new Audio('../assets/place.wav');
+          audio.play();
+        }
       }
     }
 
@@ -236,11 +244,52 @@ function dif(points) {
         neededScore += addedScore;
       }
       
+  }
+}
+
+// Timer function ///////////////////////////////////
+const countDown = window.setInterval(funcTimer, 1000);
+let disCount = document.querySelector('#timer');
+let minute = 5;
+let second = 0;
+ 
+  
+function funcTimer() {
+  
+  if (second === 0) {
+    if (minute != 0) {
+      second = 60;
+    } else if (minute == 0 && second == 0) {
+      clearTimeout(countDown);
+      return showGameOver();
     }
+    minute = minute -1; 
   }
-
-
-  export function start() {
-    tetromino = getNextTetromino();
-    rAF = requestAnimationFrame(loop);
+  second = second-1;
+  
+  if ( second <= 9) {
+    disCount.textContent = `Timer: ${minute}:0${second}`;
+  } else {
+    disCount.textContent = `Timer: ${minute}:${second}`;
   }
+}
+////////////////////////////////////////////////////////
+
+export function muteFunc() {
+  const mute = document.querySelector('#mute');
+
+  if (muteSound != true) {
+    muteSound = true;
+    mute.classList.toggle("buttonColourRed");
+    mute.classList.toggle("buttonColour");
+  } else {
+    muteSound = false;
+    mute.classList.toggle("buttonColourRed");
+    mute.classList.toggle("buttonColour");
+  }
+}  
+
+export function start() {
+  tetromino = getNextTetromino();
+  rAF = requestAnimationFrame(loop);
+}

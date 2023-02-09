@@ -1,5 +1,5 @@
 import { gameOver } from './canvas.mjs';
-import { rotate, tetromino, validMove, placeTet, updateScore } from './game_functions.mjs';
+import { rotate, tetromino, validMove, placeTet, updateScore, muteSound } from './game_functions.mjs';
 
 
 export function controler(e) {
@@ -36,8 +36,10 @@ export function controler(e) {
       placeTet();
 
       updateScore(2);
-      const audio = new Audio('../assets/place.wav');
-      audio.play();
+      if (muteSound === false) {
+        const audio = new Audio('../assets/place.wav');
+        audio.play();
+      }
       return;
     }
 
@@ -78,8 +80,10 @@ export function handleTouch(touchendX, touchendY) {
       placeTet();
 
       updateScore(2);
-      const audio = new Audio('../assets/place.wav');
-      audio.play();
+      if (muteSound === false) {
+        const audio = new Audio('../assets/place.wav');
+        audio.play();
+      }
       return;
     }
 

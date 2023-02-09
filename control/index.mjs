@@ -2,7 +2,7 @@
 
 import { canvas, context } from './canvas.mjs';
 import { controler, handleTouch } from './controls.mjs';
-import { start } from './game_functions.mjs';
+import { start, muteFunc } from './game_functions.mjs';
 
 
 function init() {
@@ -26,6 +26,9 @@ function prepareEventListeners() {
     touchendY = event.changedTouches[0].clientY - touchstartY;
     handleTouch(touchendX, touchendY);
   });
+
+  const mute = document.querySelector('#mute');
+  mute.addEventListener('click', muteFunc);
 }
 
 async function registerSW() {
