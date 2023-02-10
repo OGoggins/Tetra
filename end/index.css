@@ -20,8 +20,14 @@ html {
 #text2 {
     white-space: nowrap;
     padding-left: 2em;
+}
+
+#text3 {
+    white-space: nowrap;
+    padding-left: 2em;
     padding-top: 2em;
 }
+
 .center {
     position: absolute;
     top: 50%;
