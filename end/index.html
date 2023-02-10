@@ -19,9 +19,17 @@
     </body>
 
     <script>
+        const end = document.querySelector('#end');
+        
         
         const prevPage = document.referrer;
-
+        if (prevPage.includes = 'easy') {
+            const endTitle = 'easy';
+            end.textContent = `Thank you for playing: You played the ${endTitle} version. Return to the form and choose the ${endTitle} option.`;
+        } else {
+            const endTitle = 'control';
+            end.textContent = `Thank you for playing: You played the ${endTitle} version. Return to the form and choose the ${endTitle} option.`;
+        }
         console.log(prevPage);
         
     </script>
