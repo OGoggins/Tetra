@@ -11,7 +11,7 @@ function init() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   main();
-  start();
+  window.setTimeout(start, 900);
 }
 
 function prepareEventListeners() {

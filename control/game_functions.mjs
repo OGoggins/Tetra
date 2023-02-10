@@ -220,7 +220,7 @@ function dif(points) {
 
 // Timer function ///////////////////////////////////
 const countDown = window.setInterval(funcTimer, 1000);
-let disCount = document.querySelector('#timer');
+// let disCount = document.querySelector('#timer');
 let minute = 5;
 let second = 0;
  
