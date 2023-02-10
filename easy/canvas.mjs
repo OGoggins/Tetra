@@ -87,7 +87,7 @@ export function showGameOver() {
     audio.play();
   }
   
-  window.location.assign('https://ogoggins.github.io/Tetra/end');
+  window.location.replace('https://ogoggins.github.io/Tetra/end');
 }
 
 /*
