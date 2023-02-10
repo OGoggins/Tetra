@@ -15,18 +15,14 @@
 
     <!-- BODY -->
     <body>    
-        
         <p id="end" class="center">Thank you for playing:</p>
-        <button id="start" class="center">Press To Begin</button>
     </body>
 
     <script>
         
-        const prevPage = history.back();
+        const prevPage = history.state.prevUrl;
 
         console.log(prevPage);
         
-
-
     </script>
 </html>
