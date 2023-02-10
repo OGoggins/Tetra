@@ -86,6 +86,8 @@ export function showGameOver() {
     const audio = new Audio('../assets/game-lose.wav');
     audio.play();
   }
+  
+  window.location.assign('https://ogoggins.github.io/Tetra/end');
 }
 
 /*

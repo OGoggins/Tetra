@@ -15,7 +15,6 @@ let prev = 0;
 export let muteSound = false;
 
 
-
 function getRandomInt() {
   let total = 0;
   for (let i = 0; i < weight.length; ++i) {
@@ -267,11 +266,11 @@ function funcTimer() {
   }
   second = second-1;
   
-  if ( second <= 9) {
-    disCount.textContent = `Timer: ${minute}:0${second}`;
-  } else {
-    disCount.textContent = `Timer: ${minute}:${second}`;
-  }
+  // if ( second <= 9) {
+  //   disCount.textContent = `Timer: ${minute}:0${second}`;
+  // } else {
+  //   disCount.textContent = `Timer: ${minute}:${second}`;
+  // }
 }
 ////////////////////////////////////////////////////////
 

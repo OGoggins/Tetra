@@ -10,16 +10,23 @@
         <link rel="shortcut icon" type="image/png" href="../assets/icon.png">
         <link rel="apple-touch-icon" href="../assets/icon.png">
         <link rel="manifest" href="manifest.json" />
-        <script src="index.mjs" type="module"></script>
         <title>Tetra</title>
     </head>
 
     <!-- BODY -->
     <body>    
-        <canvas id="gameScreen" width="299" height="500" class="center"></canvas>
-        <p id="score" class="center">Score: 0</p>
-        <!-- <p id="timer" class="center">Timer: 0</p> -->
-        <button id="mute" class="center buttonColour">Mute</button>
+        
+        <p id="end" class="center">Thank you for playing:</p>
+        <button id="start" class="center">Press To Begin</button>
     </body>
 
+    <script>
+        
+        const prevPage = history.back();
+
+        console.log(prevPage);
+        
+
+
+    </script>
 </html>
