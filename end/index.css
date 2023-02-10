@@ -5,17 +5,23 @@ html {
     overflow: hidden;
 }
 
-#Welcome {
+.text {
     color: white;
     font-size: large;
     font-family: sans-serif;
     font-size: 3em;
-    white-space: nowrap;
-    text-overflow: clip;
-
-    padding-bottom: 10em;
+    
 }
 
+#text1 {
+    padding-bottom: 6em;
+}
+
+#text2 {
+    white-space: nowrap;
+    padding-left: 2em;
+    padding-top: 2em;
+}
 .center {
     position: absolute;
     top: 50%;
@@ -24,21 +30,4 @@ html {
     transform: translate(-50%, -50%);
   }
 
-#start {
-
-    display: inline-block;
-    padding: 1em 1em;
-    font-size: 2em;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #4cccc6;
-    border: none;
-    border-radius: 0.5em;
-    box-shadow: 0 0.2em #999;
-}
-
-#start:hover {background-color: #4393b3}
 

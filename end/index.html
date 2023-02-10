@@ -15,24 +15,21 @@
 
     <!-- BODY -->
     <body>    
-        <p id="end" class="center">Thank you for playing:</p>
+        <p id="text1" class="center text">Thank you for playing:</p>
+        <p id="text2" class="center text">You played the Control version.<br> Return to the form and choose the Control option.</p>
     </body>
 
     <script>
-        const end = document.querySelector('#end');
-        
-        
+        const text = document.querySelector('#text2');
         const prevPage = document.referrer;
+        
         if (prevPage.includes('easy')) {
             const endEasy = 'easy';
-            end.textContent = `Thank you for playing: You played the ${endEasy} version. Return to the form and choose the ${endEasy} option.`;
-            console.log('easy');
+            text.textContent = `Thank you for playing: You played the ${endEasy} version. Return to the form and choose the ${endEasy} option.`;
         } else if(prevPage.includes('control')){
             const endControl = 'control';
-            end.textContent = `Thank you for playing: You played the ${endControl} version. Return to the form and choose the ${endControl} option.`;
-            console.log('hard');
+            text.textContent = `Thank you for playing: You played the ${endControl} version. <br> Return to the form and choose the ${endControl} option.`;
         }
-        console.log(prevPage);
         
     </script>
 </html>
