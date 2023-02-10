@@ -26,9 +26,11 @@
         if (prevPage.includes = 'easy') {
             const endTitle = 'easy';
             end.textContent = `Thank you for playing: You played the ${endTitle} version. Return to the form and choose the ${endTitle} option.`;
-        } else {
+            console.log('easy');
+        } else if(prevPage.includes = 'control'){
             const endTitle = 'control';
             end.textContent = `Thank you for playing: You played the ${endTitle} version. Return to the form and choose the ${endTitle} option.`;
+            console.log('hard');
         }
         console.log(prevPage);
         
