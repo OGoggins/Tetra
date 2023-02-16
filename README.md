@@ -23,6 +23,11 @@
    * 
 
 ## Installation & Use
+Github Pages: 
+   ```bash
+   https://ogoggins.github.io/Tetra/start
+   ```
+
 1. Clone the repository with:
    ```bash
    git clone https://github.com
