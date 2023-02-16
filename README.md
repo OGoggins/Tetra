@@ -57,14 +57,7 @@
    * 
    * 
 
-## References
-  * 
-  * 
-  *  
-  *  
-  *  
-  *  
-  *  
+ 
 ## Paper
   ![image](https://user-images.githubusercontent.com/91492749/219493152-d70b0053-7b61-4f84-a645-2fdefdc9e466.png)
 
