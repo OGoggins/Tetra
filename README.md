@@ -64,7 +64,8 @@ Github Pages:
 
  
 ## Paper
-  ![image](https://user-images.githubusercontent.com/91492749/219493152-d70b0053-7b61-4f84-a645-2fdefdc9e466.png)
+[Tetra_by_Sprint_2 (2).pdf](https://github.com/OGoggins/Tetra/files/10769994/Tetra_by_Sprint_2.2.pdf)
+![image](https://user-images.githubusercontent.com/91492749/219752864-32002fa6-da9e-4b64-a759-7d157f210ab3.png)
 
 
 
